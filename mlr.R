@@ -32,15 +32,13 @@ library(ggplot2)
 
 mod=lm(data=data2,formula=tq~beta_adj+roa+fin_lev)
 summary(mod)  
-# Spread-Level Plot (Residuals vs. Fitted Values)
-spreadLevelPlot(mod)
-autoplot(mod,colour = "orange")
 
 
 # Get predicted values and residuals
 Predicted = predict(mod)
 Residuals = residuals(mod)
 df=data.frame(Predicted,Residuals)
+head(df) %>% round(2)
 
 # Create the residual plot
 ggplot(df, aes(x = Predicted, y = Residuals)) +
@@ -50,3 +48,4 @@ ggplot(df, aes(x = Predicted, y = Residuals)) +
        x = "Predicted Values",
        y = "Residuals") +
   theme_minimal()  # Apply a clean theme
+
